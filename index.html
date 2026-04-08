@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Briefing — Stillinger for meg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#faf9f6;--bg2:#f2f0eb;--card:#fff;
+  --text:#0a0f1a;--text2:#3d4152;--text3:#8b8e99;
+  --border:rgba(10,15,26,.08);--border2:rgba(10,15,26,.04);
+  --accent:#0a0f1a;
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+  --radius:16px;--radius-sm:10px;
+  --shadow:0 1px 3px rgba(10,15,26,.04),0 8px 24px rgba(10,15,26,.06);
+  --shadow-hover:0 2px 8px rgba(10,15,26,.06),0 16px 40px rgba(10,15,26,.1);
+}
+@media(prefers-color-scheme:dark){
+  :root{
+    --bg:#0e1117;--bg2:#181c24;--card:#1a1f28;
+    --text:#e8e6e1;--text2:#a8a9b0;--text3:#5e6070;
+    --border:rgba(232,230,225,.1);--border2:rgba(232,230,225,.05);
+    --shadow:0 1px 3px rgba(0,0,0,.2),0 8px 24px rgba(0,0,0,.3);
+    --shadow-hover:0 2px 8px rgba(0,0,0,.3),0 16px 40px rgba(0,0,0,.4);
+  }
+}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;-webkit-font-smoothing:antialiased}
+.wrapper{max-width:720px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.header{margin-bottom:2.5rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.header-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.25rem}
+.brand{display:flex;align-items:center;gap:.6rem}
+.brand-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.brand-label{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
+.date{font-family:var(--serif);font-size:2rem;font-style:italic;color:var(--text);line-height:1.2}
+.updated{font-size:.78rem;color:var(--text3);margin-top:.25rem}
+.avg-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem 1rem;border-radius:100px;font-size:.75rem;font-weight:500;letter-spacing:.04em;border:1px solid}
+
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-bottom:2.5rem}
+.stat{background:var(--bg2);border-radius:var(--radius-sm);padding:1rem 1.25rem;text-align:center;border:1px solid var(--border2)}
+.stat-value{font-family:var(--serif);font-size:1.75rem;font-weight:400;line-height:1.2}
+.stat-label{font-size:.72rem;color:var(--text3);font-weight:500;letter-spacing:.04em;text-transform:uppercase;margin-top:.15rem}
+
+.section-title{font-family:var(--sans);font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem}
+
+.cats-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.cat-chip{display:flex;align-items:center;gap:.45rem;padding:.4rem .9rem;border-radius:100px;font-size:.75rem;font-weight:500;background:var(--bg2);border:1px solid var(--border);transition:all .25s;cursor:pointer}
+.cat-chip:hover{box-shadow:var(--shadow);transform:translateY(-1px)}
+.cat-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.cat-count{background:var(--bg);border-radius:100px;padding:.1rem .45rem;font-size:.65rem;font-weight:600;color:var(--text3);margin-left:.15rem}
+
+.jobs{display:flex;flex-direction:column;gap:.75rem;margin-bottom:2.5rem}
+.job{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.25rem 1.5rem;display:grid;grid-template-columns:44px 1fr;gap:1.25rem;
+  text-decoration:none;color:inherit;transition:box-shadow .3s,transform .25s,border-color .3s;cursor:pointer;
+}
+.job:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px);border-color:rgba(10,15,26,.14)}
+@media(prefers-color-scheme:dark){.job:hover{border-color:rgba(232,230,225,.18)}}
+
+.score-ring{
+  width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:.82rem;font-weight:600;flex-shrink:0;position:relative;
+}
+.score-ring::before{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid;opacity:.15}
+.score-ring::after{content:'';position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:inherit;transform:rotate(-45deg)}
+.s-high{color:#1D9E75;border-color:#1D9E75}.s-high::before{border-color:#1D9E75}.s-high::after{border-top-color:#1D9E75;border-right-color:#1D9E75}
+.s-mid{color:#185FA5;border-color:#185FA5}.s-mid::before{border-color:#185FA5}.s-mid::after{border-top-color:#185FA5;border-right-color:#185FA5}
+.s-low{color:var(--text3);border-color:var(--text3)}.s-low::before{border-color:var(--text3)}.s-low::after{border-top-color:var(--text3)}
+
+.job-body{min-width:0}
+.job-title{font-family:var(--serif);font-size:1.1rem;line-height:1.35;margin-bottom:.2rem;font-weight:400}
+.job-company{font-size:.82rem;font-weight:500;color:var(--text2);margin-bottom:.3rem}
+.job-desc{font-size:.78rem;color:var(--text3);line-height:1.55;margin-bottom:.65rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.job-meta{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.cat-tag{font-size:.68rem;font-weight:500;padding:.2rem .6rem;border-radius:100px;letter-spacing:.02em;border:1px solid}
+.tier-tag{font-size:.65rem;color:var(--text3);padding:.15rem .5rem;border-radius:100px;background:var(--bg2)}
+.fresh-tag{font-size:.65rem;color:var(--text3);display:flex;align-items:center;gap:.3rem}
+.fresh-tag::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--text3);flex-shrink:0}
+
+/* Info Panel */
+.info-btn{display:inline-flex;align-items:center;gap:.35rem;font-size:.68rem;font-weight:500;color:var(--text3);background:var(--bg2);border:1px solid var(--border);border-radius:100px;padding:.3rem .7rem;cursor:pointer;transition:all .25s;font-family:var(--sans)}
+.info-btn:hover{color:var(--text2);border-color:rgba(10,15,26,.18);background:var(--card)}
+.info-btn .info-icon{width:15px;height:15px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.6rem;font-weight:600;font-style:italic;font-family:var(--serif);line-height:1}
+.info-panel{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.22,1,.36,1),opacity .4s;opacity:0;margin-bottom:0}
+.info-panel.open{max-height:700px;opacity:1;margin-bottom:1.5rem}
+.info-inner{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-top:.75rem}
+.factor-item{display:flex;align-items:flex-start;gap:.75rem;margin-bottom:1rem}
+.factor-item:last-child{margin-bottom:0}
+.factor-bar-mini{width:4px;border-radius:2px;flex-shrink:0;margin-top:3px;height:40px}
+.factor-title{font-size:.82rem;font-weight:500;color:var(--text);margin-bottom:.15rem}
+.factor-desc{font-size:.75rem;color:var(--text3);line-height:1.5}
+.factor-pct{font-size:.68rem;font-weight:600;color:var(--text2);margin-top:.15rem}
+.info-formula{background:var(--bg2);border-radius:var(--radius-sm);padding:.75rem 1rem;font-size:.75rem;color:var(--text2);text-align:center;margin-top:1rem;line-height:1.7}
+
+.footer{text-align:center;padding-top:2rem;border-top:1px solid var(--border);font-size:.72rem;color:var(--text3);line-height:1.7}
+.footer a{color:var(--text2);text-decoration:none;border-bottom:1px solid var(--border)}
+.pipe-stats{font-size:.65rem;color:var(--text3);opacity:.6;margin-top:.5rem}
+.loading{text-align:center;padding:4rem 0;color:var(--text3);font-size:.85rem}
+.loading-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--text3);margin:0 3px;animation:lb .8s ease-in-out infinite}
+.loading-dot:nth-child(2){animation-delay:.15s}.loading-dot:nth-child(3){animation-delay:.3s}
+@keyframes lb{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.empty{text-align:center;padding:3rem 1rem;color:var(--text3)}
+
+@media(max-width:540px){
+  .wrapper{padding:1.25rem 1rem 3rem}.date{font-size:1.5rem}
+  .stats{grid-template-columns:1fr 1fr 1fr;gap:.5rem}.stat{padding:.75rem}.stat-value{font-size:1.35rem}
+  .job{grid-template-columns:36px 1fr;gap:1rem;padding:1rem 1.15rem}.score-ring{width:36px;height:36px;font-size:.72rem}.job-title{font-size:1rem}
+}
+</style>
+</head>
+<body>
+<div class="wrapper" id="app">
+  <div class="loading" id="loader"><div style="margin-bottom:.75rem"><span class="loading-dot"></span><span class="loading-dot"></span><span class="loading-dot"></span></div>Henter stillinger...</div>
+</div>
+<script>
+(function(){
+  var app = document.getElementById('app');
+  var loader = document.getElementById('loader');
+
+  fetch('jobs.json?t='+Date.now()).then(function(r){return r.json()}).then(render).catch(function(e){
+    loader.innerHTML='<div class="empty"><p>Kunne ikke laste stillinger. Sjekk at jobs.json finnes.</p></div>';
+    console.error(e);
+  });
+
+  function render(data){
+    loader.remove();
+    var jobs=data.jobs||[];
+    var summary=data.summary||{};
+    var stats=data.stats||{};
+    var cats=summary.categories||{};
+    var html='';
+
+    // Header
+    html+='<header class="header"><div class="header-top"><div>';
+    html+='<div class="brand"><span class="brand-dot"></span><span class="brand-label">Job Briefing</span></div>';
+    html+='<h1 class="date">'+esc(data.generated_date||'')+'</h1>';
+    html+='<p class="updated">'+jobs.length+' stillinger funnet som matcher profilen din</p>';
+    html+='</div>';
+    var avg=summary.avg_score||0;
+    var ac=avg>=7?'#1D9E75':avg>=5?'#185FA5':'#888';
+    html+='<div class="avg-badge" style="color:'+ac+';border-color:'+ac+'33;background:'+ac+'0d">';
+    html+='Snitt-match '+avg.toFixed(1)+'</div>';
+    html+='</div></header>';
+
+    // Stats
+    var wealthCount=0,traineeCount=0,topCoCount=0;
+    jobs.forEach(function(j){
+      if(j.category.indexOf('Wealth')!==-1||j.category.indexOf('Private')!==-1)wealthCount++;
+      if(j.category.indexOf('Trainee')!==-1||j.category.indexOf('Graduate')!==-1)traineeCount++;
+      if(j.company_tier==='Topp-selskap')topCoCount++;
+    });
+    html+='<div class="stats">';
+    html+=statCard(wealthCount,'WM / PB','#185FA5');
+    html+=statCard(traineeCount,'Trainee','#1D9E75');
+    html+=statCard(topCoCount,'Topp-selskap','#7F77DD');
+    html+='</div>';
+
+    // Category chips
+    html+='<div class="section-title">Kategorier</div><div class="cats-row">';
+    Object.keys(cats).forEach(function(k){
+      var c=cats[k];
+      if(c.count>0){
+        html+='<div class="cat-chip" data-cat="'+esc(k)+'">';
+        html+='<span class="cat-dot" style="background:'+c.color+'"></span>'+esc(k);
+        html+='<span class="cat-count">'+c.count+'</span></div>';
+      }
+    });
+    html+='</div>';
+
+    // Jobs header with info button
+    html+='<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">';
+    html+='<div class="section-title" style="margin-bottom:0">Beste treff</div>';
+    html+='<button class="info-btn" id="infoToggle"><span class="info-icon">i</span>Hvordan scores stillingene?</button>';
+    html+='</div>';
+
+    // Info panel
+    html+='<div class="info-panel" id="infoPanel"><div class="info-inner">';
+    html+='<div class="factor-item"><div class="factor-bar-mini" style="background:#1D9E75"></div><div><div class="factor-title">Rolle-match</div><div class="factor-desc">Matcher tittelen dine m\u00e5lroller? Wealth Management, Private Banking og Fund Sales gir h\u00f8yest score. Asset Management og porteføljeroller scorer ogs\u00e5 h\u00f8yt.</div><div class="factor-pct">40% av total score</div></div></div>';
+    html+='<div class="factor-item"><div class="factor-bar-mini" style="background:#185FA5"></div><div><div class="factor-title">Kompetanse-match</div><div class="factor-desc">Treffer stillingsbeskrivelsen dine ferdigheter? Verdivurdering, risikostyring, portefølje, Bloomberg, kundeorientert — hvert treff gir poeng.</div><div class="factor-pct">25% av total score</div></div></div>';
+    html+='<div class="factor-item"><div class="factor-bar-mini" style="background:#7F77DD"></div><div><div class="factor-title">Selskaps-kvalitet</div><div class="factor-desc">Er det et anerkjent finansselskap? DNB, Nordea, Pareto, Storebrand og andre topp-selskaper gir full score. Mindre kjente men relevante aktører scorer ogs\u00e5.</div><div class="factor-pct">20% av total score</div></div></div>';
+    html+='<div class="factor-item"><div class="factor-bar-mini" style="background:#D85A30"></div><div><div class="factor-title">Ferskhet</div><div class="factor-desc">Hvor ny er annonsen? Publisert i dag = 10, siste 3 dager = 8, siste uke = 5. Eldre annonser straffes s\u00e5 du ser det mest aktuelle f\u00f8rst.</div><div class="factor-pct">15% av total score</div></div></div>';
+    html+='<div class="info-formula">Score = (Rolle \u00d7 0.4) + (Kompetanse \u00d7 0.25) + (Selskap \u00d7 0.2) + (Ferskhet \u00d7 0.15) \u00b1 senioritetsjustering</div>';
+    html+='</div></div>';
+
+    // Job cards
+    html+='<div class="jobs" id="jobList">';
+    jobs.forEach(function(j,i){html+=jobCard(j,i)});
+    if(!jobs.length)html+='<div class="empty"><p>Ingen stillinger over terskel akkurat n\u00e5.</p></div>';
+    html+='</div>';
+
+    // Footer
+    html+='<footer class="footer">Match-score basert p\u00e5 rolle, kompetanse, selskap og ferskhet';
+    if(stats.total_fetched)html+='<div class="pipe-stats">'+stats.total_fetched+' hentet \u2192 '+stats.after_dedup+' unike \u2192 '+stats.above_threshold+' over terskel \u2192 '+stats.published+' publisert</div>';
+    html+='</footer>';
+
+    app.innerHTML=html;
+
+    // Info toggle
+    var ib=document.getElementById('infoToggle'),ip=document.getElementById('infoPanel');
+    if(ib&&ip)ib.addEventListener('click',function(){ip.classList.toggle('open')});
+
+    // Category filter
+    var chips=document.querySelectorAll('.cat-chip');
+    var activeCat=null;
+    chips.forEach(function(chip){
+      chip.addEventListener('click',function(){
+        var cat=this.getAttribute('data-cat');
+        if(activeCat===cat){activeCat=null;chips.forEach(function(c){c.style.opacity='1'});showAll()}
+        else{activeCat=cat;chips.forEach(function(c){c.style.opacity=c.getAttribute('data-cat')===cat?'1':'.35'});filterByCat(cat)}
+      });
+    });
+    function showAll(){document.querySelectorAll('.job').forEach(function(el){el.style.display='grid'})}
+    function filterByCat(cat){document.querySelectorAll('.job').forEach(function(el){el.style.display=el.getAttribute('data-cat')===cat?'grid':'none'})}
+
+    // Stagger animation
+    document.querySelectorAll('.job').forEach(function(el,i){
+      el.style.opacity='0';el.style.transform='translateY(12px)';el.style.transition='opacity .45s ease,transform .45s ease';
+      setTimeout(function(){el.style.opacity='1';el.style.transform='translateY(0)'},80+i*60);
+    });
+  }
+
+  function jobCard(j,idx){
+    var sc=j.score>=8?'s-high':j.score>=6?'s-mid':'s-low';
+    var h='<a class="job" href="'+esc(j.link)+'" target="_blank" rel="noopener" data-cat="'+esc(j.category)+'">';
+    h+='<div class="score-ring '+sc+'">'+j.score.toFixed(1)+'</div>';
+    h+='<div class="job-body">';
+    h+='<h2 class="job-title">'+esc(j.title)+'</h2>';
+    if(j.company)h+='<div class="job-company">'+esc(j.company)+(j.location?' \u00b7 '+esc(j.location):'')+'</div>';
+    if(j.description)h+='<p class="job-desc">'+esc(j.description)+'</p>';
+    h+='<div class="job-meta">';
+    h+='<span class="cat-tag" style="color:'+j.category_color+';border-color:'+j.category_color+'33;background:'+j.category_color+'0d">'+esc(j.category)+'</span>';
+    if(j.company_tier)h+='<span class="tier-tag">'+esc(j.company_tier)+'</span>';
+    if(j.days_old!=null){
+      var ft=j.days_old===0?'I dag':j.days_old===1?'I g\u00e5r':j.days_old+' dager siden';
+      h+='<span class="fresh-tag">'+ft+'</span>';
+    }
+    h+='</div></div></a>';
+    return h;
+  }
+
+  function statCard(val,label,color){
+    return '<div class="stat"><div class="stat-value" style="color:'+color+'">'+val+'</div><div class="stat-label">'+label+'</div></div>';
+  }
+  function esc(s){if(!s)return '';return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+{
+  "sources": {
+    "finn_wealth": "https://www.finn.no/job/fulltime/search.html?location=0.20001&q=wealth+management&sort=PUBLISHED_DESC",
+    "finn_private_banking": "https://www.finn.no/job/fulltime/search.html?location=0.20001&q=private+banking&sort=PUBLISHED_DESC",
+    "finn_fund": "https://www.finn.no/job/fulltime/search.html?location=0.20001&q=fund+sales&sort=PUBLISHED_DESC",
+    "finn_finance_oslo": "https://www.finn.no/job/fulltime/search.html?location=0.20001&occupation=0.23&sort=PUBLISHED_DESC",
+    "finn_asset_mgmt": "https://www.finn.no/job/fulltime/search.html?location=0.20001&q=asset+management&sort=PUBLISHED_DESC",
+    "finn_client_advisor": "https://www.finn.no/job/fulltime/search.html?location=0.20001&q=r%C3%A5dgiver+finans&sort=PUBLISHED_DESC",
+    "finn_analyst": "https://www.finn.no/job/fulltime/search.html?location=0.20001&q=analyst+finance&sort=PUBLISHED_DESC"
+  },
+  "role_keywords": {
+    "tier1_perfect": [
+      "wealth management", "private banking", "fund sales", "formuesforvaltning",
+      "privatbank", "fondssalg", "wealth advisor", "client advisor finance",
+      "relationship manager", "kundeansvarlug", "private banker"
+    ],
+    "tier2_strong": [
+      "asset management", "portfolio", "kapitalforvaltning", "portefølje",
+      "investment advisor", "investeringsrådgiver", "fund manager",
+      "securities", "verdipapir", "client relations finance"
+    ],
+    "tier3_relevant": [
+      "financial advisor", "finansrådgiver", "analyst", "analytiker",
+      "corporate finance", "equity", "fixed income", "credit",
+      "risk", "compliance finance", "treasury", "økonomi",
+      "trainee bank", "graduate finance", "junior finance"
+    ]
+  },
+  "skill_keywords": [
+    "valuation", "verdivurdering", "risk management", "risikostyring",
+    "portfolio", "portefølje", "bloomberg", "python", "econometrics",
+    "behavioral finance", "client", "klient", "kunde", "rådgiver",
+    "asset allocation", "cfa", "finans", "finance", "msc", "master",
+    "relasjonsbygging", "relationship", "sales", "salg",
+    "norwegian", "norsk", "english", "engelsk", "french", "fransk"
+  ],
+  "company_tiers": {
+    "tier1_top": [
+      "dnb", "nordea", "storebrand", "arctic securities", "pareto",
+      "handelsbanken", "seb", "danske bank", "bnp paribas", "ubs",
+      "jp morgan", "goldman sachs", "morgan stanley", "credit suisse",
+      "mckinsey", "bcg", "bain", "nbim", "norges bank",
+      "oljefondet", "aker", "equinor"
+    ],
+    "tier2_strong": [
+      "sparebank", "norne securities", "carnegie", "abg sundal collier",
+      "wikborg rein", "pwc", "ey", "deloitte", "kpmg",
+      "holbergfondene", "odin", "skagen", "delphi", "first fondene",
+      "formuesforvaltning", "grieg investor", "ferd", "kistefos",
+      "klp", "gjensidige", "if", "fremtind", "skandiabanken",
+      "kraft finans", "alfred berg", "swedbank"
+    ],
+    "tier3_relevant": [
+      "bank", "finans", "kapital", "invest", "fond",
+      "securities", "asset", "wealth", "advisory",
+      "forvaltning", "megler", "forsikring"
+    ]
+  },
+  "seniority_boost": [
+    "junior", "trainee", "graduate", "nyutdannet", "entry",
+    "associate", "starter", "stilling for deg som", "ny i karrieren"
+  ],
+  "seniority_penalty": [
+    "senior", "leder", "director", "head of", "vp ",
+    "vice president", "partner", "10+ years", "erfaring krav",
+    "minimum 5 år", "minimum 7 år", "minimum 10 år"
+  ],
+  "location_oslo": [
+    "oslo", "lysaker", "fornebu", "skøyen", "bjørvika",
+    "aker brygge", "vika", "majorstuen", "nydalen"
+  ],
+  "scoring": {
+    "role_match_weight": 0.40,
+    "skill_match_weight": 0.25,
+    "company_weight": 0.20,
+    "freshness_weight": 0.15
+  },
+  "min_score": 3.0,
+  "max_jobs": 15
+}
