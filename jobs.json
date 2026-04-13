@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-04-12T07:11:53Z",
-  "generated_date": "12. april 2026",
+  "generated_at": "2026-04-13T08:00:19Z",
+  "generated_date": "13. april 2026",
   "summary": {
     "categories": {},
     "avg_score": 0,
@@ -8,8 +8,8 @@
   },
   "jobs": [],
   "stats": {
-    "total_fetched": 150,
-    "after_dedup": 23,
+    "total_fetched": 129,
+    "after_dedup": 21,
     "above_threshold": 0,
     "published": 0
   }
